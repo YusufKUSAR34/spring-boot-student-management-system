@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+<title>Öğrenci Yönetim Sistemi</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+            <nav class="navbar navbar-inverse">
+				  <div class="container-fluid">
+				    <div class="navbar-header">
+				      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				      </button>
+				      <a class="navbar-brand" href="#">Öğrenci Yönetim Sistemi</a>
+				    </div>
+				    <div class="collapse navbar-collapse" id="myNavbar">
+				      <ul class="nav navbar-nav">
+				         <li><a th:href="@{/students}">Öğrenci Yönetimi</a></li>
+				      </ul>
+				      <ul class="nav navbar-nav navbar-right">
+				        <li><a href="#">  Hoşgeldin <span sec:authentication="principal.username" ></span></a></li>
+				        <li   sec:authorize="isAuthenticated()"> <a th:href="@{/logout}"><span class="glyphicon glyphicon-log-in"></span>Oturum Kapat</a></li>
+				      </ul>
+				    </div>
+				  </div>
+            </nav>
+
+
+             <div class="container">
+                   <div class="row">
+                       <h1>Öğrencilerin Listesi</h1>
+                   </div>
+                   <div class="row"> 
+                         <div class="col-lg-3">
+                              <a th:href="@{/students/yeni}" class="btn btn-primary btn-sm mb-3">Öğrenci Ekle </a>
+                          </div>
+                   </div>
+                   <table class="table table-striped table-bordered">
+                          <thead class="table-dark">
+                                   <tr>
+                                      <th>Öğrenci Ad</th>
+                                      <th>Öğrenci Soyad</th>
+                                      <th>Öğrenci Email</th>
+                                      <th>İşlemler</th>
+                                   </tr>
+                          </thead>
+                          <tbody>
+                                  <tr th:each="student:${students}">
+                                       <td th:text="${student.fistName}"></td>
+                                       <td th:text="${student.lastName}"></td>
+                                       <td th:text="${student.email}"></td>
+                                       <td >
+                                           <a th:href="@{students/edit/{id}(id=${student.id})}" class="btn btn-success">Güncelle</a>
+                                            <a th:href="@{students/{id}(id=${student.id})}" class="btn btn-danger">Sil</a>
+                                       </td>
+                                  </tr>
+                          </tbody>
+                          
+                   </table>
+             </div>
+</body>
+</html>

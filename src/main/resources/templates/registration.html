@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Registiration</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+           <nav class="navbar navbar-inverse navbar-fixed-top">
+				  <div class="container">
+				    <div class="navbar-header">
+				      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+				      data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				      
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				      </button>
+				      <a class="navbar-brand" href="#" th:href="@{/}">Hoş Geldiniz...</a>
+				    </div>
+				  
+				  </div>
+            </nav>
+            
+            <div class="container">
+            		 <div class="row">
+                              <div class="col-md-6 col-md-offset-3">
+            						
+                              </div>
+                      </div>
+            </div>
+            <br><br><br>
+            <div class="container">
+            <h1>Kaydol</h1>
+            
+            <form th:action="@{/registration}"  method="POST" th:object="${user}">
+                            <!-- başarılı mesajı -->
+            						<div th:if="${param.success}">
+            					        	
+	            						    <div class="alert alert-primary mt-2" role="alert">
+                                            Harika uygulamamıza başarıyla kaydoldunuz.
+                                                  </div>
+	            				      </div>
+                          <div class="form-group">
+                               <label class="control-label" for="firstName">Ad</label>
+                               <input  id="firstName" class="form-control" th:field="*{firstName}" required autofocus />
+                          </div>
+                          <div class="form-group">
+                               <label class="control-label" for="lastName">Soyad</label>
+                               <input  id="lastName" class="form-control" th:field="*{lastName}" required autofocus />
+                          </div>
+                          <div class="form-group">
+                               <label class="control-label" for="email">Email</label>
+                               <input  id="email" class="form-control" th:field="*{email}" required autofocus />
+                          </div>
+                          <div class="form-group">
+                               <label class="control-label" for="password">Şifre</label>
+                               <input  id="password" class="form-control" type="password" th:field="*{password}" required autofocus />
+                          </div>
+                          <div class="form-group">
+                               <button type="submit" class="btn btn-primary">Kaydol</button>
+                               <span >Kaydın Var mı?</span><a href="/" th:href="@{/login}">Giriş Yap</a>
+                          </div>
+                          
+            </form>
+            </div>
+
+</body>
+</html>
